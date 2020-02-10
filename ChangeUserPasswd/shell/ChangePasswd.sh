@@ -14,6 +14,14 @@ if [ "$passwdCount" -ne `expr $USERNUM + 1` ]; then
     exit 1
 fi
 
+osName=`uname`
+if [ $osName == 'Darwin' ]; then
+    echo "[ERROR] : You try to run Change User Password on Macbook local pc, Abort Changing Password"
+    exit 1
+elif [ $osName == 'Linux' ]; then
+    echo "Your OS : $osName"
+fi
+
 rootPasswd=`sed -n 1p $PASSWDLISTS`
 echo "echo 'root:$rootPasswd' | chpasswd"
 if [ $? == 0 ]; then
