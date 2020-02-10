@@ -24,6 +24,7 @@ fi
 
 rootPasswd=`sed -n 1p $PASSWDLISTS`
 echo "echo 'root:$rootPasswd' | chpasswd"
+echo "root:$rootPasswd" | chpasswd
 if [ $? == 0 ]; then
     echo "[OK] : root passwd change was successful!"
 fi
@@ -33,6 +34,7 @@ do
     passwdLine=`expr $num + 1`
     userPasswd=`sed -n $passwdLine"p" $PASSWDLISTS`
     echo "echo 'user$num:$userPasswd' | chpasswd"
+    echo "user$num:$userPasswd" | chpasswd
     if [ $? == 0 ]; then
         echo "[OK] : user$num passwd change was successful!"
     fi
