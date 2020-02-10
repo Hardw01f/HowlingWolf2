@@ -41,6 +41,8 @@ echo "echo 'root:$rootPasswd' | chpasswd"
 echo "root:$rootPasswd" | chpasswd
 if [ $? == 0 ]; then
     echo "[OK] : root passwd change was successful!"
+else
+    echo "[ERROR] : root passwd change was FAILED..."
 fi
 
 for num in `seq 1 $USERNUM`
@@ -51,5 +53,7 @@ do
     echo "user$num:$userPasswd" | chpasswd
     if [ $? == 0 ]; then
         echo "[OK] : user$num passwd change was successful!"
+    else
+        echo "[ERROR] : user$num passwd change was FAILED..."
     fi
 done
