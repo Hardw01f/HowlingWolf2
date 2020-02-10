@@ -17,6 +17,8 @@ PASSWDLISTS=$2
 passwdCount=`cat $PASSWDLISTS | wc -l`
 if [ "$passwdCount" -ne `expr $USERNUM + 1` ]; then
     echo "[ERROR] : The number of passwords in $PASSWDLISTS list NOT MATCHES the number of users who change the specified password"
+    echo "Check number of passwords in $PASSWDLISTS, Please run"
+    echo '$ expr `cat PASSWD_LIST_FILE | wc -l` - 1'
     exit 1
 fi
 echo "[OK] : The number of passwords in $PASSWDLISTS list MATCHES the number of users who change the specified password"
@@ -35,6 +37,9 @@ if [ $answer != 'Yes' ]; then
     echo "Abort changing user password"
     exit 1
 fi
+
+echo "Starting change user password"
+echo ""
 
 rootPasswd=`sed -n 1p $PASSWDLISTS`
 echo "echo 'root:$rootPasswd' | chpasswd"
