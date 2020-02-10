@@ -21,7 +21,7 @@ if [ $answer != 'Yes' ]; then
     exit 1
 fi
 
-echo "Starting Get Backup"
+echo "Create Backup Directrory"
 echo ""
 
 mkdir /backup
@@ -44,6 +44,10 @@ if [ $? == 0 ]; then
 else
     echo "[ERROR] : Creating /backup/www Directory was FAILED..." 
 fi
+
+echo ""
+echo "Getting Backup"
+echo ""
 
 cp -r /etc /backup
 if [ $? == 0 ]; then
