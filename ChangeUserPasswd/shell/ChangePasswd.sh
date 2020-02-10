@@ -1,7 +1,13 @@
 #!/bin/sh
 
+if [ $# -ne 2 ]; then
+    echo "[WARNING] : You need to specific number of user changed password and Password list file as argument
+    USAGE: ChangePasswd.sh [NUNBER_OF_USER(NOT CONTAIN 'root' USER)] [PASSWORD_LIST_FILE]"
+    exit 1
+fi
+
 if [ `whoami` != "root" ]; then
-    echo "not root"
+    echo "[ERROR] : You need to run as root user"
     exit 1
 fi
 
