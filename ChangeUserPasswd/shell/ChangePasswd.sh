@@ -16,16 +16,17 @@ PASSWDLISTS=$2
 
 passwdCount=`cat $PASSWDLISTS | wc -l`
 if [ "$passwdCount" -ne `expr $USERNUM + 1` ]; then
-    echo "[ERROR] : Not match $PASSWDLISTS user passwd counts to change user passwd counts"
+    echo "[ERROR] : The number of passwords in $PASSWDLISTS list NOT MATCHES the number of users who change the specified password"
     exit 1
 fi
+echo "[OK] : The number of passwords in $PASSWDLISTS list MATCHES the number of users who change the specified password"
 
 osName=`uname`
 if [ $osName == 'Darwin' ]; then
     echo "[ERROR] : You try to run Change User Password on Macbook local pc, Abort Changing Password"
     exit 1
 elif [ $osName == 'Linux' ]; then
-    echo "Your OS : $osName"
+    echo "[OK] : Your OS : $osName"
 fi
 
 echo "Going to change root and user password , OK?  [ Yes/no ]"
