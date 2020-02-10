@@ -28,6 +28,13 @@ elif [ $osName == 'Linux' ]; then
     echo "Your OS : $osName"
 fi
 
+echo "Going to change root and user password , OK?  [ Yes/no ]"
+read answer
+if [ $answer != 'Yes' ]; then
+    echo "Abort changing user password"
+    exit 1
+fi
+
 rootPasswd=`sed -n 1p $PASSWDLISTS`
 echo "echo 'root:$rootPasswd' | chpasswd"
 echo "root:$rootPasswd" | chpasswd
